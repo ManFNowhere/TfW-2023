@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS login;
-CREATE DATABASE login;
-USE login;
+DROP DATABASE IF EXISTS tmahdi_db;
+CREATE DATABASE tmahdi_db;
+USE tmahdi_db;
 
 DROP TABLE IF EXISTS demo;
 CREATE TABLE demo (

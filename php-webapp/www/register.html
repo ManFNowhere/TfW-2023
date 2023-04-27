@@ -1,49 +1,66 @@
 <!DOCTYPE html>
 <!-- Created By CodingLab - www.codinglabweb.com -->
 <html lang="en" dir="ltr">
-  <head>
+
+<head>
     <meta charset="UTF-8">
     <!---<title> Responsive Registration Form | CodingLab </title>--->
     <link rel="stylesheet" href="css/register.css">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   </head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
 <body>
-  <div class="container">
-    <div class="title">Registration</div>
-    <div class="content">
-      <form action="script/register.php" method="post">
-        <div class="user-details">
-          <div class="input-box">
-            <span class="details">Full Name</span>
-            <input type="text" name="fullname" placeholder="Enter your name" required>
-          </div>
-          <div class="input-box">
-            <span class="details">Username</span>
-            <input type="text" name="username" placeholder="Enter your username" required>
-          </div>
-          <div class="input-box">
-            <span class="details">Email</span>
-            <input type="text" name="email" placeholder="Enter your email" required>
-          </div>
-          <div class="input-box">
-            <span class="details">Phone Number</span>
-            <input type="number" name="telpNummer" placeholder="Enter your number" required>
-          </div>
-          <div class="input-box">
-            <span class="details">Password</span>
-            <input type="text" name="password" placeholder="Enter your password" required>
-          </div>
-          <div class="input-box">
-            <span class="details">Confirm Password</span>
-            <input type="text" name="confPassword" placeholder="Confirm your password" required>
-          </div>
+    <div class="container">
+        <div class="title">Registration</div>
+        <div class="content">
+            <form action="script/register.php" method="post">
+                <div class="user-details">
+                    <div class="input-box">
+                        <span class="details">Full Name</span>
+                        <input type="text" name="fullname" placeholder="Enter your name" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Username</span>
+                        <input type="text" name="username" placeholder="Enter your username" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Email</span>
+                        <input type="text" name="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Phone Number</span>
+                        <input type="number" name="telpNummer" placeholder="Enter your number" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Password</span>
+                        <input type="password" name="password" id="password" placeholder="Enter your password" onkeyup="check()" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details" id="message">Confirm Password</span>
+                        <input type="password" name="confPassword" id="confPassword" placeholder="Confirm your password" onkeyup="check()" required>
+                    </div>
+                </div>
+                <div class="button">
+                    <input type="submit" value="Register" id="submit">
+                </div>
+            </form>
         </div>
-        <div class="button">
-          <input type="submit" value="Register">
-        </div>
-      </form>
     </div>
-  </div>
+    <script>
+        var check = function() {
+            if (document.getElementById('password').value ==
+                document.getElementById('confPassword').value) {
+                document.getElementById('message').style.color = 'green';
+                document.getElementById('message').innerHTML = 'matching';
+                document.getElementById('submit').disabled = false;
+            } else {
+                document.getElementById('message').style.color = 'red';
+                document.getElementById('message').innerHTML = 'not matching';
+                document.getElementById('submit').disabled = true;
+            }
+        }
+    </script>
 
 </body>
+
 </html>
