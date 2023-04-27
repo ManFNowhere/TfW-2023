@@ -27,8 +27,8 @@ $password = password_hash($_POST["password"],PASSWORD_DEFAULT);
 
 
 //echo ($fullname.$username.$email.$telpNummer.$password);
-if(mysqli_query($conn, "INSERT INTO demo (fullname, username, email, telpNummer,password) VALUES
-('$fullname','$username', '$email', $telpNummer, '$password')")){
+if(mysqli_query($conn, "INSERT INTO demo (timestamp, fullname, username, email, telpNummer,password) VALUES
+(CURRENT_TIMESTAMP,'$fullname','$username', '$email', $telpNummer, '$password')")){
     $_SESSION['fullname']= $fullname;
     header("Location:user.php");
     exit;
