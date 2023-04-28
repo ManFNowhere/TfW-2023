@@ -2,8 +2,8 @@ DROP DATABASE IF EXISTS tmahdi_db;
 CREATE DATABASE tmahdi_db;
 USE tmahdi_db;
 
-DROP TABLE IF EXISTS demo;
-CREATE TABLE demo (
+DROP TABLE IF EXISTS validation;
+CREATE TABLE validation (
   id INT NOT NULL AUTO_INCREMENT,
   timestamp TIMESTAMP NOT NULL,
   fullname VARCHAR(100) NOT NULL,

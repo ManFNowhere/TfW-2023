@@ -1,5 +1,6 @@
 #!/usr/bin/php
 <?php
+@ob_end_clean();
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -12,12 +13,9 @@ if(!isset($_SERVER['HTTP_REFERER'])){
 }
 session_start();
 include "private/dbconnection.inc.php";
+include "dbCon.php";
 
-// Try and connect using the info above.
-$conn = mysqli_connect($servername, $username, $password, $db);
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
+
 $sql = "SELECT * FROM demo WHERE email = ?";
 $prepareQuery = mysqli_prepare($conn,$sql);
 
@@ -27,7 +25,7 @@ if ( !isset($_POST['email'], $_POST['password']) ) {
 }
 
 // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
-if ($stmt = $conn->prepare('SELECT id, fullname, password FROM demo WHERE email = ?')) {
+if ($stmt = $conn->prepare('SELECT id, fullname, password, token FROM demo WHERE email = ?')) {
 	// Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
 	$stmt->bind_param('s', $_POST['email']);
 	$stmt->execute();
@@ -35,7 +33,7 @@ if ($stmt = $conn->prepare('SELECT id, fullname, password FROM demo WHERE email 
 	$stmt->store_result();
 
         if ($stmt->num_rows > 0) {
-                $stmt->bind_result($id,$fullname, $password);
+                $stmt->bind_result($id,$fullname, $password, $token);
                 $stmt->fetch();
                 // Account exists, now we verify the password.
                 // Note: remember to use password_hash in your registration file to store the hashed passwords.
@@ -47,7 +45,8 @@ if ($stmt = $conn->prepare('SELECT id, fullname, password FROM demo WHERE email 
                         $_SESSION['email'] = $_POST['email'];
                         $_SESSION['id'] = $id;
                         $_SESSION['fullname'] = $fullname;
-                        header("Location:user.php");
+                        $_SESSION['token'] = $token;
+                        header("Location:user.php?token=".$_SESSION['token']);
 
                 } else {
                         // Incorrect password
