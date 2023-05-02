@@ -30,4 +30,4 @@ if(!isset($_SERVER['HTTP_REFERER'])){
 </head>
 <body class='u-body u-xl-mode' data-lang='en'>
         <section class='u-align-center u-clearfix u-image u-shading u-section-1'  data-image-width='3362' data-image-height='2177' id='sec-f76f'>
-                <div class='u-clearfix u-sheet u-valign-middle-md u-valign-middle-sm u-valign-middle-xs u-sheet-1'>;
+                <div class='u-clearfix u-sheet u-valign-middle-md u-valign-middle-sm u-valign-middle-xs u-sheet-1'>

@@ -1,18 +1,28 @@
+#!/usr/bin/php
 <?php
-include('Mail.php');
+require_once("Mail.php");
 
-$recipients = 'joe@example.com';
+$from = "Test tmahdi <tmahdi@studenten.hs-bremerhaven.de>";
+$to = "test php <vrlix03@gmail.com>";
+$subject = "Subject";
+$body = "Lorem ipsum dolor sit amet, consectetur adipiscing elit...";
 
-$headers['From']    = 'richard@example.com';
-$headers['To']      = 'joe@example.com';
-$headers['Subject'] = 'Test message';
+$host = "smail.hs-bremerhaven.de";
+$username = "tmahdi@studenten.hs-bremerhaven.de";
+$password = "Pandamedina11.";
 
-$body = 'Test message';
+$headers = array('From' => $from, 'To' => $to, 'Subject' => $subject);
 
-$params['sendmail_path'] = '/usr/lib/sendmail';
+$smtp = Mail::factory('smtp', array ('host' => $host,
+                                     'auth' => true,
+                                     'username' => $username,
+                                     'password' => $password));
 
-// Create the mail object using the Mail::factory method
-$mail_object =& Mail::factory('sendmail', $params);
+$mail = $smtp->send($to, $headers, $body);
 
-$mail_object->send($recipients, $headers, $body);
+if ( PEAR::isError($mail) ) {
+    echo("<p>Error sending mail:<br/>" . $mail->getMessage() . "</p>");
+} else {
+    echo("<p>Message sent.</p>");
+}
 ?>

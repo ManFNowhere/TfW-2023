@@ -16,8 +16,7 @@ include "private/dbconnection.inc.php";
 include "dbCon.php";
 
 
-$sql = "SELECT * FROM demo WHERE email = ?";
-$prepareQuery = mysqli_prepare($conn,$sql);
+$sql = 'SELECT id, fullname, password FROM demo WHERE email = ?';
 
 if ( !isset($_POST['email'], $_POST['password']) ) {
 	// Could not get the data that should have been sent.
@@ -25,7 +24,7 @@ if ( !isset($_POST['email'], $_POST['password']) ) {
 }
 
 // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
-if ($stmt = $conn->prepare('SELECT id, fullname, password, token FROM demo WHERE email = ?')) {
+if ($stmt = $conn->prepare($sql)) {
 	// Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
 	$stmt->bind_param('s', $_POST['email']);
 	$stmt->execute();
@@ -33,7 +32,7 @@ if ($stmt = $conn->prepare('SELECT id, fullname, password, token FROM demo WHERE
 	$stmt->store_result();
 
         if ($stmt->num_rows > 0) {
-                $stmt->bind_result($id,$fullname, $password, $token);
+                $stmt->bind_result($id,$fullname, $password);
                 $stmt->fetch();
                 // Account exists, now we verify the password.
                 // Note: remember to use password_hash in your registration file to store the hashed passwords.
@@ -45,8 +44,7 @@ if ($stmt = $conn->prepare('SELECT id, fullname, password, token FROM demo WHERE
                         $_SESSION['email'] = $_POST['email'];
                         $_SESSION['id'] = $id;
                         $_SESSION['fullname'] = $fullname;
-                        $_SESSION['token'] = $token;
-                        header("Location:user.php?token=".$_SESSION['token']);
+                        header("Location:user.php?=".$fullname);
 
                 } else {
                         // Incorrect password
@@ -57,9 +55,9 @@ if ($stmt = $conn->prepare('SELECT id, fullname, password, token FROM demo WHERE
                 }
         } else {
                 // Incorrect email
-                        echo 'Incorrect email and/or password!';
+                        echo 'Account never Exist!!';
                         echo '<script type="text/javascript">';
-                        echo " alert('Incorrect and/or !');window.location.href='../login.html'";
+                        echo " alert('Account never Exist!!');window.location.href='../login.html'";
                         echo '</script>';
         }
 	$stmt->close();

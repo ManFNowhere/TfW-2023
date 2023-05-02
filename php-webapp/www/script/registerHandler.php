@@ -33,12 +33,16 @@ if(mysqli_query($conn, "INSERT INTO validation (timestamp, fullname, username, e
     $message = "Hi $fullname! 
     Account created here is the activation link http://localhost/registration/activate.php?token=$token";
     mail($email,'Activation Link TfW 2023', $message, 'From: tmahdi@studenten.hs-bremerhaven.de ');
-    include 'tmp.php';
-    echo ("<h2 class='u-text u-text-default u-title u-text-1'>Verification link sended to your Email(".$email.".)</h2></div></section>");
+    include 'simpleHeader.php';
+    echo ("<div><h2 class='u-text u-text-default u-title u-text-1'>Verification link sended to your Email(".$email.".)</h2></div>
+    <br><br><br><br><br><br><div><h3 class='u-text u-text-default'>Token : ".$token."</h3>
+    <a href='../validation.html'>Click here for validation link</a></div>
+    </div></section>");
     include 'footer.php';
-    exit;
+
     ##echo "New record created successfully";
 } else {
   echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }
-mysqli_close($conn);
+
+

@@ -11,4 +11,3 @@ else
 fi
 
 mysql -u root -p < demo.sql
-mysql -u root -p < validation.sql
