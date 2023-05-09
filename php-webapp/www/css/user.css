@@ -11,6 +11,39 @@
     margin: 175px auto -176px;
 }
 
+.btn {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 12px;
+    margin: 20px 20px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #71b7e6;
+    color: white;
+    cursor: pointer;
+}
+
+.exportBtn {
+    float: inline-start;
+}
+
+.table,
+td,
+th {
+    border: 1px solid;
+    page-break-inside: avoid;
+}
+
+.userConsol {
+    margin: 2em;
+}
+
 @media (max-width: 1199px) {
     .u-section-1 .u-sheet-1 {
         min-height: 366px;

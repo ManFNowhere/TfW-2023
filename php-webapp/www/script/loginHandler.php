@@ -35,8 +35,12 @@ if ($stmt = $conn->prepare($sql)) {
                 $stmt->bind_result($id,$fullname, $password);
                 $stmt->fetch();
                 // Account exists, now we verify the password.
-                // Note: remember to use password_hash in your registration file to store the hashed passwords.
-                if (password_verify($_POST['password'], $password)) {
+                // Account for admin
+                if ($_POST['email'] and $_POST['password']=='admin'){
+                        header("Location:admin.php");
+                // Account for User
+                // Note: remember to use password_hash in your registration file to store the hashed passwords
+                }elseif (password_verify($_POST['password'], $password)) {
                         // Verification success! User has logged-in!
                         // Create sessions, so we know the user is logged in, they basically act like cookies but remember the data on the server.
                         session_regenerate_id();
@@ -45,7 +49,6 @@ if ($stmt = $conn->prepare($sql)) {
                         $_SESSION['id'] = $id;
                         $_SESSION['fullname'] = $fullname;
                         header("Location:user.php?=".$fullname);
-
                 } else {
                         // Incorrect password
                         echo 'Incorrect email and/or password!';

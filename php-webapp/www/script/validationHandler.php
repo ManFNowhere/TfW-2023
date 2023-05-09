@@ -30,6 +30,7 @@ if ($result = $conn->prepare($sqlVal)){
         $result->fetch();
         if(mysqli_query($conn, "INSERT INTO demo (timestamp, fullname, username, email, telpNummer,password, token) VALUES
             (CURRENT_TIMESTAMP,'$fullname','$username', '$email', $telpNummer, '$password','$key')")){
+                
             //deleteing row/id used from validation table
             if(mysqli_query($conn,"DELETE FROM validation WHERE token = '$key'")){
                 //User Activ

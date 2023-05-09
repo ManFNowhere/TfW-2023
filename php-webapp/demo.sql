@@ -33,4 +33,6 @@ CREATE EVENT cleaning ON SCHEDULE EVERY 1 MINUTE ENABLE
   DELETE FROM validation
   WHERE timestamp < CURRENT_TIMESTAMP - INTERVAL 10 MINUTE;
 
+INSERT INTO demo (timestamp, fullname, username, email, telpNummer, password, token) VALUES
+(CURRENT_TIMESTAMP,'admin','admin','admin','-','admin','admin')
 
