@@ -11,16 +11,31 @@
     margin: 175px auto -176px;
 }
 
+.table,
+td,
+th {
+    border: 1px solid;
+    page-break-inside: avoid;
+    margin: 0 auto 0 auto;
+}
+
+.userConsol {
+    width: 100%;
+    margin: 2em;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
 .btn {
     background-color: #4CAF50;
     border: none;
-    color: white;
+    color: white !important;
     padding: 10px 20px;
-    text-align: center;
     text-decoration: none;
     font-size: 12px;
-    margin: 20px 20px;
     cursor: pointer;
+    margin: 2em;
 }
 
 .btn:hover {
@@ -31,17 +46,6 @@
 
 .exportBtn {
     float: inline-start;
-}
-
-.table,
-td,
-th {
-    border: 1px solid;
-    page-break-inside: avoid;
-}
-
-.userConsol {
-    margin: 2em;
 }
 
 @media (max-width: 1199px) {

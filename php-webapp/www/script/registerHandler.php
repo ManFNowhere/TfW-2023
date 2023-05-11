@@ -22,11 +22,12 @@ $email = $_POST["email"];
 $telpNummer = $_POST["telpNummer"];
 $password = password_hash($_POST["password"],PASSWORD_DEFAULT);
 $token = bin2hex(openssl_random_pseudo_bytes(32));
+$activationKey = bin2hex(openssl_random_pseudo_bytes(4));
 
 
 //echo ($fullname.$username.$email.$telpNummer.$password);
-if(mysqli_query($conn, "INSERT INTO validation (timestamp, fullname, username, email, telpNummer,password, token) VALUES
-(CURRENT_TIMESTAMP,'$fullname','$username', '$email', $telpNummer, '$password','$token')")){
+if(mysqli_query($conn, "INSERT INTO validation (timestamp, fullname, username, email, telpNummer,password, token, activationKey) VALUES
+(CURRENT_TIMESTAMP,'$fullname','$username', '$email', $telpNummer, '$password','$token', '$activationKey')")){
     $_SESSION['fullname']= $fullname;
     $_SESSION['token'] = $token;
     //send email verification
@@ -35,7 +36,7 @@ if(mysqli_query($conn, "INSERT INTO validation (timestamp, fullname, username, e
     mail($email,'Activation Link TfW 2023', $message, 'From: tmahdi@studenten.hs-bremerhaven.de ');
     include 'simpleHeader.php';
     echo ("<div><h2 class='u-text u-text-default u-title u-text-1'>Verification link sended to your Email(".$email.".)</h2></div>
-    <br><br><br><br><br><br><div><h3 class='u-text u-text-default'>Token : ".$token."</h3>
+    <br><br><br><br><br><br><div><h3 class='u-text u-text-default'>Activation Key : ".$activationKey."</h3>
     <a href='../validation.html'>Click here for validation link</a></div>
     </div></section>");
     include 'footer.php';

@@ -24,6 +24,7 @@ CREATE TABLE validation (
   telpNummer CHAR(15) NOT NULL,
   password VARCHAR(255) NOT NULL,
   token VARCHAR(255) NOT NULL,
+  activationKey VARCHAR(255) NOT NULL,
   PRIMARY KEY (id));
 
 

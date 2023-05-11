@@ -16,7 +16,7 @@ include "private/dbconnection.inc.php";
 include "dbCon.php";
 
 
-$sqlVal = "SELECT fullname, username, email, telpNummer, password FROM validation WHERE token = ?";
+$sqlVal = "SELECT fullname, username, email, telpNummer, password, token FROM validation WHERE activationKey = ?";
 $key = $_POST['validationKey'];
 
 if ($result = $conn->prepare($sqlVal)){
@@ -26,13 +26,13 @@ if ($result = $conn->prepare($sqlVal)){
     $result->store_result();
 
     if ($result-> num_rows > 0){
-        $result->bind_result($fullname, $username, $email, $telpNummer, $password);
+        $result->bind_result($fullname, $username, $email, $telpNummer, $password, $token);
         $result->fetch();
         if(mysqli_query($conn, "INSERT INTO demo (timestamp, fullname, username, email, telpNummer,password, token) VALUES
-            (CURRENT_TIMESTAMP,'$fullname','$username', '$email', $telpNummer, '$password','$key')")){
+            (CURRENT_TIMESTAMP,'$fullname','$username', '$email', $telpNummer, '$password','$token')")){
                 
             //deleteing row/id used from validation table
-            if(mysqli_query($conn,"DELETE FROM validation WHERE token = '$key'")){
+            if(mysqli_query($conn,"DELETE FROM validation WHERE activationKey = '$key'")){
                 //User Activ
                 $message = "Hi $fullname!\n";
                 include 'simpleHeader.php';
