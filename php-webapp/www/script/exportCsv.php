@@ -18,6 +18,7 @@ $query = $conn->query("SELECT * FROM demo");
 
 // Prepare folder for csv data
 if(!is_dir("../tempdir")){
+        chmod("../tempdir",777);
         mkdir("../tempdir");
       }
       
