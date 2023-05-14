@@ -10,5 +10,5 @@ else
   exit 1
 fi
 
-mysql -u root -p < demo.sql
-mysql -u root -p < validation.sql
+mysqldump -u root -p tmahdi_db demo > userDatabase.sql
+mysql -u root -p tmahdi_db < userDatabase.sql
