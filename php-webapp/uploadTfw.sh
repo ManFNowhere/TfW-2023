@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ##create tar from php-webapp
-tar -cf php-webapp.tar www/ demo.sql
+tar -cf php-webapp.tar www/ 
 
 ##copy tar to hopper
 scp -P 8080 php-webapp.tar tmahdi@hopper.hs-bremerhaven.de:~/tfw/

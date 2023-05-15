@@ -20,11 +20,13 @@ th {
 }
 
 .userConsol {
-    width: 100%;
+    width: auto;
     margin: 2em;
     display: grid;
+    justify-content: start;
+    overflow-x: auto;
+    justify-items: center;
     align-items: center;
-    justify-content: center;
 }
 
 .btn {
@@ -52,6 +54,15 @@ th {
     .u-section-1 .u-sheet-1 {
         min-height: 366px;
     }
+    .userConsol {
+        width: auto;
+        margin: 2em;
+        display: grid;
+        justify-content: start;
+        overflow-x: auto;
+        justify-items: center;
+        align-items: center;
+    }
 }
 
 @media (max-width: 991px) {
@@ -64,6 +75,15 @@ th {
         margin-bottom: 60px;
         margin-left: 45px;
     }
+    .userConsol {
+        width: auto;
+        margin: 2em;
+        display: grid;
+        justify-content: start;
+        overflow-x: auto;
+        justify-items: center;
+        align-items: center;
+    }
 }
 
 @media (max-width: 767px) {
@@ -73,10 +93,28 @@ th {
     .u-section-1 .u-text-1 {
         margin-left: 23px;
     }
+    .userConsol {
+        width: auto;
+        margin: 2em;
+        display: grid;
+        justify-content: start;
+        overflow-x: auto;
+        justify-items: center;
+        align-items: center;
+    }
 }
 
 @media (max-width: 575px) {
     .u-section-1 .u-sheet-1 {
         min-height: 352px;
+    }
+    .userConsol {
+        width: auto;
+        margin: 2em;
+        display: grid;
+        justify-content: start;
+        overflow-x: auto;
+        justify-items: center;
+        align-items: center;
     }
 }
