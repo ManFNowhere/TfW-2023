@@ -1,7 +1,7 @@
 #!/bin/bash
-rm -r ~/Sites/tfw
-mkdir ~/Sites/tfw
-cp  -r www/* ~/Sites/tfw/
+rm -r ~/Sites/pages/docker/pages/HochschuleProject/tfw
+mkdir ~/Sites/pages/docker/pages/HochschuleProject/tfw
+cp  -r www/* ~/Sites/pages/docker/pages/HochschuleProject/tfw
 if curl -s -o /dev/null https://informatik.hs-bremerhaven.de/$USER-web/tfw/demo.php; then
   echo "deployt nach https://informatik.hs-bremerhaven.de/$USER-web/tfw"
   echo "(demo.php, sqldemo.php, redisdemo.php)"
